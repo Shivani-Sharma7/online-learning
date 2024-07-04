@@ -4,11 +4,16 @@ import CarouselImage from './CarouselImage';
 
 const CustomCarousel = () => {
     return(
-        <Carousel>
-            <Carousel.Item>
-               <CarouselImage text="First Item" />
-            </Carousel.Item>
-        </Carousel>
+        <div className="custom-carousel-container">
+            <Carousel className="custom-carousel">
+                <Carousel.Item>
+                <CarouselImage text="first" />
+                </Carousel.Item>
+                <Carousel.Item>
+                <CarouselImage text="second" />
+                </Carousel.Item>
+            </Carousel>
+        </div>
     )
 } 
 

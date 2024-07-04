@@ -11,6 +11,27 @@ body {
     margin: 0 auto;
     padding: 20px;
   }
+
+  .custom-carousel-container {
+    width: 100%; /* Ensure full width of container */
+    height: 300px; /* Set fixed height for the carousel */
+    overflow: hidden; /* Hide overflow to prevent vertical scrolling */
+}
+
+.custom-carousel {
+    height: 100%; /* Ensure carousel takes full height of its container */
+}
+
+.carousel-item {
+    text-align: center; /* Center contents horizontally */
+    overflow: hidden; /* Hide overflow to prevent image overflow */
+}
+
+.carousel-item img {
+    max-height: 100%; /* Ensure images fit within carousel item */
+    width: auto; /* Maintain aspect ratio */
+}
+
   
   /* Define styles specific to your App component or other components */
   
