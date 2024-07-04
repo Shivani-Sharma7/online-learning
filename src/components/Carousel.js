@@ -12,6 +12,9 @@ const CustomCarousel = () => {
                 <Carousel.Item>
                 <CarouselImage text="second" />
                 </Carousel.Item>
+                <Carousel.Item>
+                <CarouselImage text="third" />
+                </Carousel.Item>
             </Carousel>
         </div>
     )
