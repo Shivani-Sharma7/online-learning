@@ -1,6 +1,6 @@
 Online Learning Platform:
 
-Example: Coursera or Udemy clone
+Example: Udemy Clone In React
     Features to Implement:
         Course listings and details
         Static video lectures
