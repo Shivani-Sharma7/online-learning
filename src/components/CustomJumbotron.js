@@ -1,34 +1,32 @@
 import React from "react";
 import { Container,Row,Col } from "react-bootstrap";
 import volks from '../images/volkswagen_logo.svg';
-// import cisco from '../images/cisco_logo.svg';
-// import citi from '../images/citi_logo.svg';
-// import ericsson from '../images/ericsson_logo.svg';
-// import hp from '../images/hewlett_packard_enterprise_logo.svg';
-// import procter from '../images/proctor_gamble_logo.svg';
-// import samsung from '../images/samsung_logo.svg';
-// import vimeo from '../images/vimeo_logo.svg';
+import {Image} from 'react-bootstrap';
 
 const CustomJumbotron = () => {
+    const cisco=require(`../images/citi_logo.jpg`);
+    const citi=require(`../images/citi_logo.jpg`);
+    const ericsson=require(`../images/ericsson_logo.jpg`);
+    const hp=require(`../images/hewlett_packard_enterprise_logo.jpg`);
+    const proctor=require(`../images/procter_gamble_logo.jpg`);
+    const samsung=require(`../images/samsung_logo.jpg`);
+    const vimeo=require(`../images/vimeo_logo.jpg`);
     return(
         <div>
             <Container fluid className="p-5">
             </Container>
             <Container fluid className="p-5 bg-light text-center text-format">
+                <h5 style={{color:'grey',marginBottom:'50px'}}>Trusted by over 15,000 companies and millions of learners around the world</h5>
                 <Row>
-                    <Col>
-                        <h5  >Trusted by over 15,000 companies and millions of learners around the world</h5>
-                        <img src={volks} alt='volkswagen'/>
-                        <img src={volks} alt='cisco'/>
-                        <img src={volks} alt='citi'/>
-                        <img src={volks} alt='ericsson'/>
-                        <img src={volks} alt='hp'/>
-                        <img src={volks} alt='proctor'/>
-                        <img src={volks} alt='samsung'/>
-                        <img src={volks} alt='vimeo'/>
-                    </Col>
+                    <Col><img src={volks} alt='volkswagen'/></Col>
+                    <Col><img src={cisco} alt='cisco' width='60px' height='50px'/></Col>
+                    <Col><img src={citi} alt='citi' width='60px' height='50px'/></Col>
+                    <Col><img src={ericsson} alt='ericsson' width='60px' height='50px'/></Col>
+                    <Col><img src={hp} alt='hp' width='60px' height='50px'/></Col>
+                    <Col><img src={proctor} alt='proctor' width='60px' height='50px'/></Col>
+                    <Col><img src={samsung} alt='samsung' width='60px' height='50px'/></Col>
+                    <Col><img src={vimeo} alt='vimeo' width='60px' height='50px'/></Col>
                 </Row>
-                
             </Container>
         </div>
     )
