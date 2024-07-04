@@ -27,7 +27,7 @@ const CustomFeatured =()=> {
     }
     return(
         <>
-            <div className='container-fluid text-start bg-light p-5'>
+            <div className='container text-start bg-light p-5'>
                 <h3  style={{marginLeft: '50px'}}>
                     Featured topics by category
                 </h3>

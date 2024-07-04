@@ -13,9 +13,9 @@ const CustomJumbotron = () => {
     const vimeo=require(`../images/vimeo_logo.jpg`);
     return(
         <div>
-            <Container fluid className="p-5">
+            <Container className="p-5">
             </Container>
-            <Container fluid className="p-5 bg-light text-center text-format">
+            <Container className="p-5 bg-light text-center text-format">
                 <h5 style={{color:'grey',marginBottom:'50px'}}>Trusted by over 15,000 companies and millions of learners around the world</h5>
                 <Row>
                     <Col><img src={volks} alt='volkswagen'/></Col>

@@ -4,7 +4,7 @@ import { Container, Card, Button, Carousel } from "react-bootstrap";
 const CustomTestimonials = () => {
   return (
     <>
-      <div className="bg-light p-5 text-start">
+      <div className="container bg-light p-5 text-start">
         <h4>How learners like you are achieving their goals</h4>
         <Carousel className="p-5">
           <Carousel.Item>
