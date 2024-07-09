@@ -1,6 +1,7 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import { Button, Container, Form, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "./UserContext";
 
 const SignupPage = () => {
     const navigate=useNavigate();
@@ -12,6 +13,11 @@ const SignupPage = () => {
         user_repassword:''
     });
 
+    const {setUserData}=useContext(UserContext);
+
+    const [isvalid,setIsValid]=useState(true);
+    const [passwordMatch,setPasswordMatch]=useState(true);
+
     const handleInputChange = (event) => {
         const {name,value} = event.target;
         setFormData({...formData, [name]: value});
@@ -19,8 +25,25 @@ const SignupPage = () => {
 
     const submitSignupForm = (event) => {
         event.preventDefault();
+        
+        const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+        setIsValid(passwordPattern.test(formData.user_password));
+        if (isvalid){
+            if (formData.user_password != formData.user_repassword){
+                return;
+            } else {
+                setPasswordMatch(false);
+            }
+        } else {
+            return;
+        }
+
         localStorage.setItem('formData',JSON.stringify(formData));
-        navigate('/myaccount');
+        setUserData(formData);
+        navigate('/myaccount',{state:{formData}});
+
+        
     }
 
     const login_image=require(`../images/login_image.webp`);
@@ -59,10 +82,11 @@ const SignupPage = () => {
                                 Sign Up
                             </Button>
                         </Form>
+                        {isvalid ? <div></div> : <div className="text-danger mt-4">At least one lowercase letter, one uppercase letter, one digit, one special character, minimum length of 8 characters!!!</div> }
+                        {passwordMatch ? <div></div> : <div className="text-danger mt-4">Passwords do not match!!!</div>}
                     </Col>
                 </Row>
             </Container>
-            
         </div>
         </>
 

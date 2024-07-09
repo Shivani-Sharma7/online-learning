@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -7,9 +7,12 @@ import { Form, Row, Col, Button } from 'react-bootstrap';
 import { lowerCase,startCase } from 'lodash';
 import { useNavigate } from 'react-router-dom';
 import Homepage from './Homepage';
+import { UserContext } from './UserContext';
 
-const CustomNavbar = ({user_data}) => {
+const CustomNavbar = () => {
     const navigate=useNavigate();
+    const {userData} = useContext(UserContext);
+    const {logoutUser} = useContext(UserContext);
     const [formData, setFormData] = useState({
         search_keyword: ''
     });
@@ -56,8 +59,8 @@ const CustomNavbar = ({user_data}) => {
         navigate('/');
     }
 
-    const logoutUser = () => {
-        localStorage.removeItem('formData');
+    const logoutUserFunc = () => {
+        logoutUser();
         navigate('/');
     }
 
@@ -93,12 +96,12 @@ const CustomNavbar = ({user_data}) => {
                         <Nav.Link href="#features">Plans & Pricing</Nav.Link>
                         <Nav.Link href="#pricing">Udemy Business</Nav.Link>
                         <Nav.Link href="#pricing">Tech on Udemy</Nav.Link>
-                            {user_data ? (
+                            {userData ? (
                                 <>
-                                    <Nav.Link className="align-text-middle"><Button variant="light" style={{borderRadius: '0'}} onClick={redirectAccountPage}>{startCase(user_data)}</Button>
+                                    <Nav.Link className="align-text-middle"><Button variant="light" style={{borderRadius: '0'}} onClick={redirectAccountPage}>{startCase(userData.user_fname)}</Button>
                                     </Nav.Link>
                                     <Nav.Link className="align-text-middle">
-                                        <Button variant="dark" style={{ borderRadius: '0' }} onClick={logoutUser}>Logout</Button>
+                                        <Button variant="dark" style={{ borderRadius: '0' }} onClick={logoutUserFunc}>Logout</Button>
                                     </Nav.Link>
                                 </>
                             ) : (
