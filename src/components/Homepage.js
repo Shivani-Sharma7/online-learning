@@ -1,5 +1,4 @@
 import React from 'react';
-import CustomNavbar from './Navbar';
 import CustomCarousel from './Carousel';
 import CustomJumbotron from './CustomJumbotron';
 import CustomCourses from './Courses';
@@ -10,10 +9,9 @@ import CustomAppeal from './CustomAppeal';
 import CustomFeatured from './CustomFeatured';
 import CustomBusiness from './CustomBusiness';
 
-const Homepage = () => {
+const Homepage = ({user_data}) => {
     return(
         <div>
-            <CustomNavbar></CustomNavbar>
             <CustomCarousel></CustomCarousel>
             <CustomJumbotron></CustomJumbotron>
             <CustomCourses></CustomCourses>

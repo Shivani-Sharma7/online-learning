@@ -4,13 +4,16 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Form, Row, Col, Button } from 'react-bootstrap';
-import { lowerCase } from 'lodash';
+import { lowerCase,startCase } from 'lodash';
+import { useNavigate } from 'react-router-dom';
+import Homepage from './Homepage';
 
-const CustomNavbar = () => {
+const CustomNavbar = ({user_data}) => {
+    const navigate=useNavigate();
     const [formData, setFormData] = useState({
         search_keyword: ''
     });
-
+    
     const courses_list = {
         python: ['Python for Beginners', 'Python Intermediate', 'Python Advanced'],
         Javascript: ['Javascript for Beginners', 'Javascript Intermediate', 'Javascript Advanced'],
@@ -22,6 +25,14 @@ const CustomNavbar = () => {
         const { name, value } = event.target;
         setFormData({ ...formData, [name]: value });
     };
+
+    const redirectLogin = () => {
+        navigate('/login');
+    }
+
+    const redirectSignup = () => {
+        navigate('/signup');
+    }
 
     const searchCourse = (event) => {
         event.preventDefault();
@@ -37,11 +48,24 @@ const CustomNavbar = () => {
         }
     };
 
+    const redirectAccountPage = () => {
+        navigate('/myaccount');
+    }
+
+    const gotoHomepage = () => {
+        navigate('/');
+    }
+
+    const logoutUser = () => {
+        localStorage.removeItem('formData');
+        navigate('/');
+    }
+
     return (
         <>
             <Navbar bg="white" data-bs-theme="light">
                 <Container>
-                    <Navbar.Brand href="#home">Udemy</Navbar.Brand>
+                    <Navbar.Brand onClick={gotoHomepage} style={{cursor:'pointer'}}>Udemy</Navbar.Brand>
                     <Nav className="me-auto">
                         <NavDropdown title="Categories" id="basic-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
@@ -59,7 +83,7 @@ const CustomNavbar = () => {
                                         onChange={handleOnChange}
                                         value={formData.search_keyword}
                                         placeholder="Search for anything"
-                                        className="mr-sm-2"
+                                        className="mr-sm-2 bg-light" style={{borderColor:'black',borderRadius:'25px'}}
                                     />
                                 </Col>
                             </Row>
@@ -69,12 +93,25 @@ const CustomNavbar = () => {
                         <Nav.Link href="#features">Plans & Pricing</Nav.Link>
                         <Nav.Link href="#pricing">Udemy Business</Nav.Link>
                         <Nav.Link href="#pricing">Tech on Udemy</Nav.Link>
-                        <Nav.Link className="align-text-middle">
-                            <Button variant="light" style={{ borderRadius: '0' }}>Log in</Button>
-                        </Nav.Link>
-                        <Nav.Link className="align-text-middle">
-                            <Button variant="dark" style={{ borderRadius: '0' }}>Sign up</Button>
-                        </Nav.Link>
+                            {user_data ? (
+                                <>
+                                    <Nav.Link className="align-text-middle"><Button variant="light" style={{borderRadius: '0'}} onClick={redirectAccountPage}>{startCase(user_data)}</Button>
+                                    </Nav.Link>
+                                    <Nav.Link className="align-text-middle">
+                                        <Button variant="dark" style={{ borderRadius: '0' }} onClick={logoutUser}>Logout</Button>
+                                    </Nav.Link>
+                                </>
+                            ) : (
+                                <>
+                                    <Nav.Link className="align-text-middle">
+                                    <Button variant="light" style={{ borderRadius: '0' }} onClick={redirectLogin}>Log in</Button>
+                                    </Nav.Link>
+                                    <Nav.Link className="align-text-middle">
+                                        <Button variant="dark" style={{ borderRadius: '0' }} onClick={redirectSignup}>Sign up</Button>
+                                    </Nav.Link>
+                                </>
+                            )
+                        }
                         <Nav.Link className="align-text-middle">
                             <Button variant="light" style={{ borderRadius: '0' }}><i className="bi bi-globe"></i></Button>
                         </Nav.Link>
